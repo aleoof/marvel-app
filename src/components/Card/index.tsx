@@ -1,3 +1,5 @@
+import { useRef } from 'react';
+
 interface ICardProps {
 	image: {
 		path: string;
@@ -7,8 +9,18 @@ interface ICardProps {
 }
 
 export const Card = ({ image, name }: ICardProps) => {
+	const modal = useRef(null);
+
+	const openModal = () => {
+		console.log((modal.current.classList += 'aaa'));
+	};
+
 	return (
-		<div className="flex border border-grey rounded-lg overflow-hidden">
+		<a
+			ref={modal}
+			onClick={() => openModal()}
+			className="flex border border-grey rounded-lg overflow-hidden"
+		>
 			<div className="relative h-20 min-w-20">
 				<img
 					className="h-full w-full"
@@ -17,6 +29,6 @@ export const Card = ({ image, name }: ICardProps) => {
 				/>
 			</div>
 			<h3>{name}</h3>
-		</div>
+		</a>
 	);
 };
